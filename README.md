@@ -1,0 +1,162 @@
+# 🥷 stealth.nvim
+
+An ultra-minimalist, matte-black, high-contrast Neovim colorscheme inspired by **Monkeytype's Stealth** theme.
+
+Designed with precision for focus, clarity, and modern Neovim features. Personalized token styling for comments, keywords, functions, variables, strings, types, and rich integration with popular Neovim plugins.
+
+---
+
+## ✨ Features
+
+- 🎯 **Monkeytype Stealth Aesthetic**: Deep matte-black backgrounds, crisp white accents, and slate grey secondary hierarchy.
+- 🎨 **Multiple Palette Variants**: `stealth` (default), `monochrome`, `emerald`, `cyan`, `violet`, and `amber`.
+- 💬 **Personalized Syntax Highlights**: Customize styles (`italic`, `bold`, `undercurl`) for comments, keywords, functions, variables, constants, and types.
+- 🪟 **Transparent Mode**: Toggle transparent background for floating windows, sidebars, or the entire editor.
+- ⚡ **Full Plugin Ecosystem Integration**:
+  - Treesitter & Semantic Tokens (`@lsp.type.*`)
+  - Native LSP & Diagnostics
+  - Telescope.nvim
+  - NvimTree / Neo-Tree / Oil.nvim
+  - WhichKey.nvim
+  - Gitsigns.nvim
+  - Nvim-Cmp & Blink.cmp
+  - Indent-Blankline / IBL
+  - Mini.nvim (Statusline, Pick, Starter, Files)
+  - Trouble.nvim
+  - Dashboard-nvim / Alpha-nvim
+  - Noice.nvim / nvim-notify
+- 📊 **Lualine Theme Integration**: Included out-of-the-box via `theme = "stealth"`.
+- 💻 **Terminal Colors**: Automatic setup for `:terminal` colors (`vim.g.terminal_color_*`).
+
+---
+
+## ⚡ Installation
+
+### [lazy.nvim](https://github.com/folke/lazy.nvim)
+
+```lua
+{
+  "lucas/stealth.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {
+    variant = "stealth",
+    styles = {
+      comments = { italic = true },
+      keywords = { bold = true },
+    },
+  },
+  config = function(_, opts)
+    require("stealth").setup(opts)
+    vim.cmd.colorscheme("stealth")
+  end,
+}
+```
+
+### [packer.nvim](https://github.com/wbthomason/packer.nvim)
+
+```lua
+use {
+  'lucas/stealth.nvim',
+  config = function()
+    require('stealth').setup()
+    vim.cmd('colorscheme stealth')
+  end
+}
+```
+
+### [vim-plug](https://github.com/junegunn/vim-plug)
+
+```vim
+Plug 'lucas/stealth.nvim'
+
+" In your lua configuration
+lua << EOF
+  require('stealth').setup()
+  vim.cmd('colorscheme stealth')
+EOF
+```
+
+---
+
+## ⚙️ Configuration Options
+
+Default settings can be overridden by passing a configuration table to `setup()`:
+
+```lua
+require("stealth").setup({
+  -- Palette variant: "stealth" (default), "monochrome", "emerald", "cyan", "violet", "amber"
+  variant = "stealth",
+
+  -- Enable transparent background
+  transparent = false,
+
+  -- Dim background of inactive windows
+  dim_inactive = false,
+
+  -- Set terminal colors (vim.g.terminal_color_*)
+  terminal_colors = true,
+
+  -- Personalized syntax styles
+  styles = {
+    comments = { italic = true },
+    keywords = { bold = true, italic = false },
+    functions = { bold = false, italic = false },
+    variables = { italic = false },
+    strings = { italic = false },
+    constants = { bold = true },
+    types = { bold = false },
+    sidebars = "dark", -- "dark", "transparent", or "normal"
+    floats = "dark",   -- "dark", "transparent", or "normal"
+  },
+
+  -- Override colors
+  on_colors = function(colors)
+    colors.comment = "#6b7280" -- Customize comment color
+    colors.accent = "#818cf8"  -- Customize accent
+  end,
+
+  -- Override highlight groups
+  on_highlights = function(highlights, colors)
+    highlights.Comment = { fg = colors.comment, italic = true }
+    highlights.Function = { fg = colors.green, bold = true }
+  end,
+})
+
+vim.cmd.colorscheme("stealth")
+```
+
+---
+
+## 🎨 Palette Variants
+
+| Variant | Accent / Key Features |
+| :--- | :--- |
+| `stealth` (Default) | Iconic Monkeytype white main accent, emerald mint functions, sky cyan types, slate comments. |
+| `monochrome` | Ultra-minimalist black, grey, and white palette with sharp red diagnostics. |
+| `emerald` | Stealth dark background paired with vibrant emerald mint accents. |
+| `cyan` | Cool arctic cyan and sky blue accents on matte black background. |
+| `violet` | Elegant lavender and violet accents for a dark cyberpunk vibe. |
+| `amber` | Tactical golden amber accents on matte black background. |
+
+---
+
+## 📊 Lualine Theme Integration
+
+Simply specify `'stealth'` as your theme in Lualine:
+
+```lua
+require('lualine').setup({
+  options = {
+    theme = 'stealth',
+    component_separators = '',
+    section_separators = '',
+  }
+})
+```
+
+---
+
+## 📄 License
+
+MIT License. Designed and built with ❤️ for Neovim users.

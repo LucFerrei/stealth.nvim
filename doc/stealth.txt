@@ -1,0 +1,99 @@
+*stealth.txt*   Stealth theme for Neovim inspired by Monkeytype Stealth
+
+==============================================================================
+STEALTH.NVIM                                                   *stealth.nvim*
+
+Stealth is a dark, ultra-minimalist, high-contrast colorscheme for Neovim
+designed with the aesthetic of Monkeytype's iconic "Stealth" theme.
+
+It features personalized syntax highlights for comments, keywords, functions,
+variables, strings, and types, along with full support for Treesitter, LSP,
+Semantic Tokens, Telescope, Neo-Tree, NvimTree, Gitsigns, Cmp, Blink, Lualine,
+WhichKey, and many more plugins.
+
+==============================================================================
+USAGE                                                          *stealth-usage*
+
+To load the default Stealth theme:
+
+    >lua
+    require('stealth').setup()
+    vim.cmd.colorscheme('stealth')
+    <
+
+Or in your Neovim configuration plugin spec (Lazy.nvim):
+
+    >lua
+    {
+      "lucas/stealth.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {},
+      config = function(_, opts)
+        require("stealth").setup(opts)
+        vim.cmd.colorscheme("stealth")
+      end,
+    }
+    <
+
+==============================================================================
+CONFIGURATION                                             *stealth-config*
+
+Stealth supports detailed customization options passed into `setup()`:
+
+    >lua
+    require('stealth').setup({
+      -- Select theme palette variant:
+      -- "stealth" (default monkeytype white/slate accent),
+      -- "monochrome", "emerald", "cyan", "violet", "amber"
+      variant = "stealth",
+
+      -- Enable transparent background
+      transparent = false,
+
+      -- Dim inactive windows
+      dim_inactive = false,
+
+      -- Set terminal colors (vim.g.terminal_color_*)
+      terminal_colors = true,
+
+      -- Personalized font styles for syntax tokens
+      styles = {
+        comments = { italic = true },
+        keywords = { bold = true, italic = false },
+        functions = { bold = false, italic = false },
+        variables = { italic = false },
+        strings = { italic = false },
+        constants = { bold = true },
+        types = { bold = false },
+        sidebars = "dark", -- "dark", "transparent", "normal"
+        floats = "dark",   -- "dark", "transparent", "normal"
+      },
+
+      -- Custom color hook
+      on_colors = function(colors)
+        colors.comment = "#6b7280"
+      end,
+
+      -- Custom highlight hook
+      on_highlights = function(highlights, colors)
+        highlights.Comment = { fg = colors.comment, italic = true }
+      end,
+    })
+    <
+
+==============================================================================
+INTEGRATIONS                                               *stealth-integrations*
+
+LUALINE ~
+
+    >lua
+    require('lualine').setup({
+      options = {
+        theme = 'stealth',
+      }
+    })
+    <
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
