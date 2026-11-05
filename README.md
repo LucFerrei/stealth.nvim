@@ -36,7 +36,7 @@ Designed with precision for focus, clarity, and modern Neovim features. Personal
 
 ```lua
 {
-  "lucas/stealth.nvim",
+  "LucFerrei/stealth.nvim",
   lazy = false,
   priority = 1000,
   opts = {
@@ -57,7 +57,7 @@ Designed with precision for focus, clarity, and modern Neovim features. Personal
 
 ```lua
 use {
-  'lucas/stealth.nvim',
+  'LucFerrei/stealth.nvim',
   config = function()
     require('stealth').setup()
     vim.cmd('colorscheme stealth')
@@ -68,7 +68,7 @@ use {
 ### [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'lucas/stealth.nvim'
+Plug 'LucFerrei/stealth.nvim'
 
 " In your lua configuration
 lua << EOF
