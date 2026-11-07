@@ -25,7 +25,7 @@ Or in your Neovim configuration plugin spec (Lazy.nvim):
 
     >lua
     {
-      "lucas/stealth.nvim",
+      "LucFerrei/stealth.nvim",
       lazy = false,
       priority = 1000,
       opts = {},
